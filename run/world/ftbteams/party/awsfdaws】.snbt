@@ -1,0 +1,39 @@
+{
+	id: "0fa04cd0-96de-43b5-bbd7-7dbe6325c6e2"
+	type: "party"
+	owner: "327d5a59-584d-3ac9-8d58-e9afcd40f53f"
+	ranks: {
+		327d5a59-584d-3ac9-8d58-e9afcd40f53f: "owner"
+	}
+	properties: {
+		"ftbteams:display_name": "aas"
+		"ftbteams:description": "aaa"
+		"ftbteams:color": "#FF0000"
+		"ftbteams:free_to_join": 0b
+		"ftbteams:max_msg_history_size": 1000
+		"ftbchunks:allow_explosions": 0b
+		"ftbchunks:allow_mob_griefing": 0b
+		"ftbchunks:allow_fake_players": 0b
+		"ftbchunks:allow_named_fake_players": [ ]
+		"ftbchunks:allow_fake_players_by_id": 1b
+		"ftbchunks:allow_pvp": 1b
+		"ftbchunks:block_edit_mode": "allies"
+		"ftbchunks:block_interact_mode": "allies"
+		"ftbchunks:entity_interact_mode": "allies"
+		"ftbchunks:nonliving_entity_attack_mode": "allies"
+		"ftbchunks:claim_visibility": "public"
+		"ftbchunks:location_mode": "allies"
+	}
+	message_history: [
+		{ from: "00000000-0000-0000-0000-000000000000", date: 1727412838248L, text: "{\"color\":\"yellow\",\"translate\":\"ftbteams.message.joined\",\"with\":[{\"text\":\"CN_GOOD_GRASS\"}]}" }
+		{ from: "327d5a59-584d-3ac9-8d58-e9afcd40f53f", date: 1727413202421L, text: "{\"color\":\"green\",\"translate\":\"ftbteams.message.invited\",\"with\":[{\"color\":\"yellow\",\"text\":\"player\"}]}" }
+		{ from: "327d5a59-584d-3ac9-8d58-e9afcd40f53f", date: 1727413217272L, text: "{\"color\":\"green\",\"translate\":\"ftbteams.message.invited\",\"with\":[{\"color\":\"yellow\",\"text\":\"player\"}]}" }
+		{ from: "327d5a59-584d-3ac9-8d58-e9afcd40f53f", date: 1727413237948L, text: "{\"color\":\"green\",\"translate\":\"ftbteams.message.invited\",\"with\":[{\"color\":\"yellow\",\"text\":\"player\"}]}" }
+		{ from: "00000000-0000-0000-0000-000000000000", date: 1727413240448L, text: "{\"color\":\"green\",\"translate\":\"ftbteams.message.joined\",\"with\":[{\"text\":\"player\"}]}" }
+		{ from: "327d5a59-584d-3ac9-8d58-e9afcd40f53f", date: 1727413259744L, text: "{\"color\":\"gold\",\"translate\":\"ftbteams.message.kicked\",\"with\":[{\"color\":\"yellow\",\"text\":\"player\"},{\"color\":\"aqua\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/ftbteams info aaa#0fa04cd0\"},\"text\":\"aaa\"}]}" }
+		{ from: "327d5a59-584d-3ac9-8d58-e9afcd40f53f", date: 1727413267884L, text: "{\"color\":\"green\",\"translate\":\"ftbteams.message.invited\",\"with\":[{\"color\":\"yellow\",\"text\":\"player\"}]}" }
+		{ from: "00000000-0000-0000-0000-000000000000", date: 1727413278383L, text: "{\"color\":\"green\",\"translate\":\"ftbteams.message.joined\",\"with\":[{\"text\":\"player\"}]}" }
+		{ from: "00000000-0000-0000-0000-000000000000", date: 1727414146297L, text: "{\"color\":\"gold\",\"translate\":\"ftbteams.message.left_party\",\"with\":[{\"color\":\"yellow\",\"text\":\"player\"}]}" }
+	]
+	extra: { }
+}

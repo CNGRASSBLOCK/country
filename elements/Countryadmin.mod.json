@@ -1,0 +1,10 @@
+{
+  "_fv": 60,
+  "_type": "command",
+  "definition": {
+    "commandName": "countryadmin",
+    "type": "STANDARD",
+    "permissionLevel": "2",
+    "argsxml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"args_start\" deletable=\"false\" x=\"40\" y=\"40\"><next><block type=\"literal\"><field name=\"name\">read_data</field><statement name=\"args\"><block type=\"call_procedure\"><field name=\"procedure\">ReadData</field></block></statement><next><block type=\"literal\"><field name=\"name\">save_data</field><statement name=\"args\"><block type=\"call_procedure\"><field name=\"procedure\">SaveData</field></block></statement><next><block type=\"literal\"><field name=\"name\">dischucklist</field><statement name=\"args\"><block type=\"call_procedure\"><field name=\"procedure\">ListChuck</field></block></statement></block></next></block></next></block></next></block></xml>"
+  }
+}
