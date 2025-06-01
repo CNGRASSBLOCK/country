@@ -50,7 +50,7 @@ public class ReadDataProcedure {
 				File country_info_file = new File((FMLPaths.GAMEDIR.get().toString() + "/world/country/info"), File.separator + (country_names + ".json"));
 				Country country = null;
 				if (!country_info_file.exists()) {
-					country = new Country(country_name, new UUID(0,0), new BlockPos(0, 0, 0));
+					country = new Country(country_name, new UUID(0,0));
 					CountryMod.LOGGER.error(("[Country] Can't find %s in info file".formatted(country_name)));
 				} else {
 					{
@@ -64,7 +64,7 @@ public class ReadDataProcedure {
 							bufferedReader.close();
 							JsonObject info_main_json = new com.google.gson.Gson().fromJson(jsonstringbuilder.toString(), com.google.gson.JsonObject.class);
 
-							country = new Country(country_name, new UUID(0,0), new BlockPos(0, 0, 0));
+							country = new Country(country_name, new UUID(0,0));
 
 							if (info_main_json.has("owner") && !info_main_json.get("owner").getAsString().isEmpty()) country.owner = UUID.fromString(info_main_json.get("owner").getAsString());
 							if (info_main_json.has("spawn_pos_x") && info_main_json.has("spawn_pos_y") && info_main_json.has("spawn_pos_z")) country.spawn = new BlockPos((int) info_main_json.get("spawn_pos_x").getAsDouble(), (int) info_main_json.get("spawn_pos_y").getAsDouble(), (int) info_main_json.get("spawn_pos_z").getAsDouble());

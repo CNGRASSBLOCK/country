@@ -14,6 +14,12 @@ public class CountryPool {
     public static boolean has(String country_name) { for (Country country : countryPool) { if (country.name.equals(country)) return true; } return false; }
 
     public static Country getFromName(String country_name) { for (Country country : countryPool) { if (country.name.equals(country)) return country; } return null; }
-    public static Country getFromPlayer(Player player) { for (Country country : countryPool) { if (country.getPlayer().has(player.getUUID()) ) return country; } return null; }
-    public static Country getFromLand(ChunkAccess chunkAccess) { for (Country country : countryPool) { if (country.getLand().has(chunkAccess)) return country; } return null; }
+    public static Country getFromPlayer(Player player) {
+        for (Country country : countryPool) for (Town town : country.getAllTown()) if (town.getPlayer().has(player.getUUID())) return country;
+        return null;
+    }
+    public static Country getFromLand(ChunkAccess chunkAccess) {
+        for (Country country : countryPool) for (Town town : country.getAllTown()) if (town.getLand().has(chunkAccess)) return country;
+        return null;
+    }
 }

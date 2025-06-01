@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class PlayerGroup {
+public class PeopleGroup {
     private static final List<UUID> players = new ArrayList<>();
 
     public boolean has(UUID uuid) { return players.contains(uuid); }

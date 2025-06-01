@@ -36,15 +36,15 @@ public class Create {
 			return;
 		}
 
-		Country country = new Country(country_name, player.getUUID(), player.getOnPos());
+		Country country = new Country(country_name, player.getUUID());
 
-		boolean add_chuck = false;
-		for (int x = 0; x < 5; x++) {
-			for (int z = 0; z < 5; z++) {
-				ChunkAccess chunkAccess = world.getChunk(new BlockPos((int) (player.getX() + (x - 2) * 16), 0, (int) (player.getZ() + (z - 2) * 16)));
-				if (CountryPool.getFromLand(chunkAccess) == null) { country.getLand().add(chunkAccess); add_chuck = true; }
-			}
-		}
+//		boolean add_chuck = false;
+//		for (int x = 0; x < 5; x++) {
+//			for (int z = 0; z < 5; z++) {
+//				ChunkAccess chunkAccess = world.getChunk(new BlockPos((int) (player.getX() + (x - 2) * 16), 0, (int) (player.getZ() + (z - 2) * 16)));
+//				if (CountryPool.getFromLand(chunkAccess) == null) { country.getLand().add(chunkAccess); add_chuck = true; }
+//			}
+//		}
 		if (!add_chuck) player.displayClientMessage(Component.literal("§6[Country]§3[player]§c无法为您的国家声明土地!"), false);
 
 		player.displayClientMessage(Component.literal("§6[Country]§3[player]§2建国成功!"), false);

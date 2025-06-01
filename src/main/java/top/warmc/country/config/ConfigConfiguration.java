@@ -28,8 +28,6 @@ public class ConfigConfiguration {
 	static {
 		BUILDER.push("main");
 		A = BUILDER.comment("a").define("a", false);
-		Country country = new Country("a", new UUID(0,0), new BlockPos(0,0,0));
-		country.
 		BUILDER.pop();
 		BUILDER.push("country");
 		COUNTRY_PROTECTION = BUILDER.comment("是否对和平国家的领土保护").define("country_protection", true);
