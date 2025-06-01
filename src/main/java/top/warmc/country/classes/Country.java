@@ -9,6 +9,7 @@ public class Country {
     //主要的内容
     public String name;
     public UUID owner;
+    public Long create_time;
 
     private final PeopleGroup admin = new PeopleGroup();
 
@@ -19,6 +20,7 @@ public class Country {
     public Country(String name, UUID owner) {
         this.name = name;
         this.owner = owner;
+        this.create_time = System.currentTimeMillis() / 1000;
     }
 
     public PeopleGroup getAdmin() { return admin; }
