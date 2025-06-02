@@ -12,57 +12,39 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
     mappings channel: 'official', version: '1.20.1'
-
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-
     copyIdeResources = true
-
     runs {
-        client {
-            workingDirectory project.file('run')
-
+        client { workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-
-            mods {
-                examplemod {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        server {
-            workingDirectory project.file('run')
-
+            mods { examplemod { source sourceSets.main } } }
+        server { workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-
-            mods {
-                examplemod {
-                    source sourceSets.main
-                }
-            }
-        }
+            mods { examplemod { source sourceSets.main } } }
     }
+}
+
+repositories {
+    maven { name = "JourneyMap (Public)"
+        url = "https://jm.gserv.me/repository/maven-public/" }
+    maven { url "https://www.cursemaven.com" }
 }
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.20.1-47.2.0'
+
+    compileOnly fg.deobf(group: 'info.journeymap', name: 'journeymap-api', version: project.journeymap_api_version, changing: true)
+    runtimeOnly fg.deobf("curse.maven:journeymap-${project.jm_project_id}:${project.jm_file_id}")
+
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
 mixin {
     add sourceSets.main, 'mixins.country.refmap.json'
-
     config 'mixins.country.json'
-
-    debug.verbose = true
-    debug.export = true
-    dumpTargetOnFailure = true
-
     quiet
 }
 
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
-}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
