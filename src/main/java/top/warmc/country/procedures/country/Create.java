@@ -19,24 +19,14 @@ import top.warmc.country.classes.Town;
 
 @Mod.EventBusSubscriber(value = Dist.DEDICATED_SERVER)
 public class Create {
-	public static void Create(LevelAccessor world, CommandContext<CommandSourceStack> arguments, Entity entity) {
-		if (!(entity instanceof Player player) || world.isClientSide() || world.getServer() == null) return;
+	public static boolean Create(LevelAccessor world, CommandContext<CommandSourceStack> arguments, Player player) {
+		if (player == null) return false;
 
-		if (CountryPool.getFromPlayer(player) != null) {
-			player.displayClientMessage(Component.literal("§6[Country]§3[player]§c存在同名国家!"), false);
-			return;
-		}
-
+		if (CountryPool.getCountryFromPlayer(player) != null) { player.displayClientMessage(Component.literal("§6[Country]§3[player]§c存在同名国家!"), false); return false; }
 
 		String country_name = StringArgumentType.getString(arguments, "country_name");
-		if (country_name.isEmpty()) {
-			player.displayClientMessage(Component.literal("§6[Country]§3[player]§c国家名字不能为空!"), false);
-			return;
-		}
-		if (CountryPool.has(country_name)) {
-			player.displayClientMessage(Component.literal("§6[Country]§3[player]§c存在同名国家!"), false);
-			return;
-		}
+		if (country_name.isEmpty()) { player.displayClientMessage(Component.literal("§6[Country]§3[player]§c国家名字不能为空!"), false); return false; }
+		if (CountryPool.has(country_name)) { player.displayClientMessage(Component.literal("§6[Country]§3[player]§c存在同名国家!"), false); return false; }
 
 		Country country = new Country(country_name, player.getUUID());
         Town town = new Town(country_name, player.getUUID(), player.getOnPos());
@@ -45,12 +35,14 @@ public class Create {
 		for (int x = 0; x < 5; x++) {
 			for (int z = 0; z < 5; z++) {
 				ChunkAccess chunkAccess = world.getChunk(new BlockPos((int) (player.getX() + (x - 2) * 16), 0, (int) (player.getZ() + (z - 2) * 16)));
-				if (CountryPool.getFromLand(chunkAccess) == null) { town.getLand().add(chunkAccess); add_chuck = true; }
+				if (CountryPool.getCountryFromLand(chunkAccess) == null) { town.getLand().add(chunkAccess); add_chuck = true; }
 			}
 		}
 		if (!add_chuck) player.displayClientMessage(Component.literal("§6[Country]§3[player]§c无法为您的国家声明土地!"), false);
 
+		CountryPool.add(country);
 		player.displayClientMessage(Component.literal("§6[Country]§3[player]§2建国成功!"), false);
-		world.getServer().getPlayerList().broadcastSystemMessage(Component.literal(("§6[Country]§3[player]§3玩家 %s §2在 §4x:%d z:%d §3建立了新的国家".formatted(player.getName().getString(), Math.round(entity.getX()), Math.round(entity.getZ())))), false);
+		world.getServer().getPlayerList().broadcastSystemMessage(Component.literal(("§6[Country]§3[player]§3玩家 %s §2在 §4x:%d z:%d §3建立了新的国家".formatted(player.getName().getString(), Math.round(player.getX()), Math.round(player.getZ())))), false);
+		return true;
 	}
 }

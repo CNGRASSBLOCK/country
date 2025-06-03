@@ -33,13 +33,11 @@ public class Town {
     public void setOwner(UUID owner) { this.owner = owner; }
     public void setSpawn(BlockPos spawn) { this.spawn = spawn; }
 
-    @Override
-    public boolean equals(Object o) {
+    @Override public boolean equals(Object o) {
         if (!(o instanceof Town town)) return false;
         return Objects.equals(name, town.name);
     }
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         return Objects.hashCode(name);
     }
 }

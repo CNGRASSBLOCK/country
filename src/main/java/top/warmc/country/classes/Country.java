@@ -53,13 +53,9 @@ public class Country {
         return true;
     }
 
-    @Override
-    public boolean equals(Object o) {
+    @Override public boolean equals(Object o) {
         if (!(o instanceof Country country)) return false;
         return Objects.equals(name, country.name);
     }
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(name);
-    }
+    @Override public int hashCode() { return Objects.hashCode(name); }
 }

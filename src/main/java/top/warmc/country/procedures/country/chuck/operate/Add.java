@@ -1,20 +1,7 @@
 package top.warmc.country.procedures.country.chuck.operate;
 
-import top.warmc.country.network.CountryModVariables;
-import top.warmc.country.config.ConfigConfiguration;
-
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.network.chat.Component;
-import net.minecraft.core.BlockPos;
-
-import java.util.List;
-import java.util.ArrayList;
-
-public class AddProcedure {
-//	public static InteractionResult execute(LevelAccessor world, Entity entity, boolean auto) {
+//public class Add {
+//	public static boolean add(LevelAccessor world, Entity entity, boolean auto) {
 //		if (entity == null)
 //			return InteractionResult.PASS;
 //		boolean logic_for_find_player_pos = false;
@@ -120,4 +107,4 @@ public class AddProcedure {
 //			_player.displayClientMessage(Component.literal("\u00A76[Country]\u00A7a[chuck]\u00A72\u6210\u529F\u58F0\u660E\u8BE5\u533A\u5757!"), false);
 //		return InteractionResult.PASS;
 //	}
-}
+//}
