@@ -1,12 +1,8 @@
 package top.warmc.country.config;
 
-import net.minecraft.core.BlockPos;
-
 import net.minecraftforge.common.ForgeConfigSpec;
-import top.warmc.country.classes.Country;
 
 import java.util.List;
-import java.util.UUID;
 
 public class ConfigConfiguration {
 	public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();

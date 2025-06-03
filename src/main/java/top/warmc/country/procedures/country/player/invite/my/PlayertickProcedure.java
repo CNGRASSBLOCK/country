@@ -1,6 +1,6 @@
 package top.warmc.country.procedures.country.player.invite.my;
 
-import top.warmc.country.network.CountryModVariables;
+import top.warmc.country.network.CountryModNetWork;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -29,36 +29,36 @@ public class PlayertickProcedure {
 	private static void execute(@Nullable Event event, Entity entity) {
 		if (entity == null)
 			return;
-		if ((entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModVariables.PlayerVariables())).disband_tick > 0) {
+		if ((entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModNetWork.PlayerVariables())).disband_tick > 0) {
 			{
-				double _setval = (entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModVariables.PlayerVariables())).disband_tick - 1;
-				entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+				double _setval = (entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModNetWork.PlayerVariables())).disband_tick - 1;
+				entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.disband_tick = _setval;
 					capability.syncPlayerVariables(entity);
 				});
 			}
 		}
-		if ((entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModVariables.PlayerVariables())).country_invite_cooling > 0) {
+		if ((entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModNetWork.PlayerVariables())).country_invite_cooling > 0) {
 			{
-				double _setval = (entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModVariables.PlayerVariables())).country_invite_cooling - 1;
-				entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+				double _setval = (entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModNetWork.PlayerVariables())).country_invite_cooling - 1;
+				entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.country_invite_cooling = _setval;
 					capability.syncPlayerVariables(entity);
 				});
 			}
 		}
-		if ((entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModVariables.PlayerVariables())).country_invite_spend_time > 1) {
+		if ((entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModNetWork.PlayerVariables())).country_invite_spend_time > 1) {
 			{
-				double _setval = (entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModVariables.PlayerVariables())).country_invite_spend_time - 1;
-				entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+				double _setval = (entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModNetWork.PlayerVariables())).country_invite_spend_time - 1;
+				entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.country_invite_spend_time = _setval;
 					capability.syncPlayerVariables(entity);
 				});
 			}
-		} else if ((entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModVariables.PlayerVariables())).country_invite_spend_time == 1) {
+		} else if ((entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModNetWork.PlayerVariables())).country_invite_spend_time == 1) {
 			{
-				double _setval = (entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModVariables.PlayerVariables())).country_invite_spend_time - 1;
-				entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+				double _setval = (entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModNetWork.PlayerVariables())).country_invite_spend_time - 1;
+				entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 					capability.country_invite_spend_time = _setval;
 					capability.syncPlayerVariables(entity);
 				});

@@ -1,4 +1,6 @@
-package top.warmc.country.classes;
+package top.warmc.country.core.classes;
+
+import top.warmc.country.core.pool.CountryPool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +48,7 @@ public class Country {
 
     public boolean isPeace() { return this.war.isEmpty(); }
     public boolean launch(String country_name) {
-        Country country = CountryPool.getFromName(country_name);
+        Country country = CountryPool.getCountryFromName(country_name);
         if (country == null) return false;
         if (this.war.contains(country)) return false;
         this.war.add(country);

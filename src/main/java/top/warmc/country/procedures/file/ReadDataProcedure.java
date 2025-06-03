@@ -1,23 +1,7 @@
 package top.warmc.country.procedures.file;
 
-import com.google.gson.JsonObject;
-import net.minecraft.core.BlockPos;
-import top.warmc.country.classes.Country;
-import top.warmc.country.network.CountryModVariables;
-import top.warmc.country.CountryMod;
-
-import net.minecraftforge.fml.loading.FMLPaths;
-import net.minecraftforge.fml.common.Mod;
 //import top.warmc.country.procedures.file.DataFixProcedure;
 
-import java.util.List;
-import java.util.ArrayList;
-
-import java.io.IOException;
-import java.io.FileReader;
-import java.io.File;
-import java.io.BufferedReader;
-import java.util.UUID;
 
 //@Mod.EventBusSubscriber
 //public class ReadDataProcedure {

@@ -1,8 +1,5 @@
 package top.warmc.country.procedures.country.other;
 
-import top.warmc.country.network.CountryModVariables;
-import top.warmc.country.config.ConfigConfiguration;
-
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -10,13 +7,8 @@ import net.minecraftforge.event.ServerChatEvent;
 
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.network.chat.Component;
-import top.warmc.country.CountryMod;
 
 import javax.annotation.Nullable;
-
-import java.util.List;
-import java.util.ArrayList;
 
 @Mod.EventBusSubscriber
 public class MessageProcedure {

@@ -1,11 +1,10 @@
-package top.warmc.country.classes;
+package top.warmc.country.core.classes;
 
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.chunk.ChunkAccess;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class LandGroup {
     private final List<ChunkPos> chunk = new ArrayList<>();

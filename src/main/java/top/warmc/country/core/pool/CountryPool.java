@@ -1,12 +1,14 @@
-package top.warmc.country.classes;
+package top.warmc.country.core.pool;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.chunk.ChunkAccess;
+import top.warmc.country.core.classes.Country;
+import top.warmc.country.core.classes.Town;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CountryPool {
+public abstract class CountryPool {
     private static final List<Country> CountryPool = new ArrayList<>();
     private static List<Country> CilentCountryPool = new ArrayList<>();
 
@@ -19,20 +21,14 @@ public class CountryPool {
     public static boolean remove(Country country) { return CountryPool.remove(country); }
     public static boolean has(String country_name) { for (Country country : CountryPool) { if (country.name.equals(country_name)) return true; } return false; }
 
+    public static boolean isInCountry(Player player) { return top.warmc.country.core.pool.CountryPool.getTownFromPlayer(player) != null; }
+    public static boolean isInCountry(ChunkAccess chunkAccess) { return top.warmc.country.core.pool.CountryPool.getTownFromLand(chunkAccess) != null; }
+
     public static Country getCountryFromName(String country_name) { for (Country country : CountryPool) { if (country.name.equals(country_name)) return country; } return null; }
-    public static Country getCountryFromPlayer(Player player) {
-        for (Country country : CountryPool) for (Town town : country.getAllTown()) if (town.getPlayer().has(player.getUUID())) return country;
-        return null;
-    }
-    public static Country getCountryFromLand(ChunkAccess chunkAccess) {
-        for (Country country : CountryPool) for (Town town : country.getAllTown()) if (town.getLand().has(chunkAccess)) return country;
-        return null;
-    }
     public static Country getCountryFromTown(Town town) {
         for (Country country : CountryPool) if (country.getAllTown().contains(town)) return country;
         return null;
     }
-
     public static Town getTownFromName(String town_name) {
         for (Country country : CountryPool) for (Town town : country.getAllTown()) if (town.name.equals(town_name)) return town;
         return null;

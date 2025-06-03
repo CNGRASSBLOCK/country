@@ -15,14 +15,6 @@ import javax.annotation.Nullable;
 public class OnServerStartProcedure {
 	@SubscribeEvent
 	public static void init(FMLDedicatedServerSetupEvent event) {
-		execute();
-	}
-
-	public static void execute() {
-		execute(null);
-	}
-
-	private static void execute(@Nullable Event event) {
 		CountryMod.LOGGER.info("====================================================");
 		CountryMod.LOGGER.info("|  ▋▋▋                                             |");
 		CountryMod.LOGGER.info("| ▋   ▋                                            |");
@@ -34,7 +26,5 @@ public class OnServerStartProcedure {
 		CountryMod.LOGGER.info("|                                               ▋  |");
 		CountryMod.LOGGER.info("|                                             ▋▋   |");
 		CountryMod.LOGGER.info("====================================================");
-		CountryMod.LOGGER.info("Reading Data");
-//		ReadDataProcedure.execute();
 	}
 }

@@ -1,4 +1,4 @@
-package top.warmc.country.classes;
+package top.warmc.country.core.classes;
 
 import net.minecraft.world.entity.player.Player;
 

@@ -1,6 +1,6 @@
 package top.warmc.country.procedures.country.player.invite.my;
 
-import top.warmc.country.network.CountryModVariables;
+import top.warmc.country.network.CountryModNetWork;
 
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.entity.player.Player;
@@ -14,7 +14,7 @@ public class DenyintiveProcedure {
 	public static void execute(LevelAccessor world, Entity entity) {
 		if (entity == null)
 			return;
-		if ((entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModVariables.PlayerVariables())).country_invite_spend_time > 0) {
+		if ((entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModNetWork.PlayerVariables())).country_invite_spend_time > 0) {
 			if (!(new Object() {
 				Entity getEntity(String uuid) {
 					Entity _uuidentity = null;
@@ -26,17 +26,17 @@ public class DenyintiveProcedure {
 					}
 					return _uuidentity;
 				}
-			}.getEntity(((entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModVariables.PlayerVariables())).country_invite_player_uuid)) == null)) {
+			}.getEntity(((entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModNetWork.PlayerVariables())).country_invite_player_uuid)) == null)) {
 				{
 					double _setval = 0;
-					entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+					entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 						capability.country_invite_spend_time = _setval;
 						capability.syncPlayerVariables(entity);
 					});
 				}
 				{
 					String _setval = "";
-					entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+					entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 						capability.country_invite_player_uuid = _setval;
 						capability.syncPlayerVariables(entity);
 					});
@@ -54,7 +54,7 @@ public class DenyintiveProcedure {
 						}
 						return _uuidentity;
 					}
-				}.getEntity(((entity.getCapability(CountryModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModVariables.PlayerVariables())).country_invite_player_uuid)) instanceof Player _player && !_player.level().isClientSide())
+				}.getEntity(((entity.getCapability(CountryModNetWork.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CountryModNetWork.PlayerVariables())).country_invite_player_uuid)) instanceof Player _player && !_player.level().isClientSide())
 					_player.displayClientMessage(Component.literal("\u00A76[Country]\u00A72\u5BF9\u65B9\u62D2\u7EDD\u52A0\u5165!"), false);
 			} else {
 				if (entity instanceof Player _player && !_player.level().isClientSide())

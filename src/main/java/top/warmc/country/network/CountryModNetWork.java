@@ -28,11 +28,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.client.Minecraft;
 
 import java.util.function.Supplier;
-import java.util.List;
-import java.util.ArrayList;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-public class CountryModVariables {
+public class CountryModNetWork {
 	@SubscribeEvent
 	public static void init(FMLCommonSetupEvent event) {
 		CountryMod.addNetworkMessage(PlayerVariablesSyncMessage.class, PlayerVariablesSyncMessage::buffer, PlayerVariablesSyncMessage::new, PlayerVariablesSyncMessage::handler);

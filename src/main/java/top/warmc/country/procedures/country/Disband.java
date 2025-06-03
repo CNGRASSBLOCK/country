@@ -2,11 +2,10 @@ package top.warmc.country.procedures.country;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.common.Mod;
-import top.warmc.country.classes.Country;
-import top.warmc.country.classes.CountryPool;
+import top.warmc.country.core.classes.Country;
+import top.warmc.country.core.pool.CountryPool;
 
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.network.chat.Component;
 
 import net.minecraft.world.level.LevelAccessor;
@@ -15,7 +14,7 @@ import net.minecraft.world.level.LevelAccessor;
 public class Disband {
 	public static boolean Disband(LevelAccessor world, Player player) {
         if (player == null) return false;
-		Country country = CountryPool.getFromPlayer(player);
+		Country country = CountryPool.getCountryFromTown(CountryPool.getTownFromPlayer(player));
 		if (country == null) { player.displayClientMessage(Component.literal("§6[Country]§3[player]§c您没有建立国家!"), false); return false; }
 
 		if (!country.owner.equals(player.getUUID())) { player.displayClientMessage(Component.literal("§6[Country]§3[player]§c您没有权限!"), false); return false; }
