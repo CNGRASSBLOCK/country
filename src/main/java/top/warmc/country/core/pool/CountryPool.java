@@ -17,6 +17,8 @@ public abstract class CountryPool {
         for (Country countrys : CountryPool) allName.add(country.name);
         return allName;
     }
+
+    public static void removeAll() { CountryPool.clear(); }
     public static boolean add(Country country) { if (CountryPool.contains(country)) { return false; } else { CountryPool.add(country); return true; } }
     public static boolean remove(Country country) { return CountryPool.remove(country); }
     public static boolean has(String country_name) { for (Country country : CountryPool) { if (country.name.equals(country_name)) return true; } return false; }
