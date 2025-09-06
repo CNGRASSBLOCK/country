@@ -1,1 +1,8 @@
-{}
+{
+  "message.country.message.player.disband": "§6[Country]§3[player]§cThe country has been dissolved.",
+  "message.country.message.player.disband": "§6[Country]§3[player]§cThe country has been dissolved.",
+  "message.country.message.player.no_country" : "§6[Country]§3[player]§cYou have't established a country.",
+  "message.country.message.player.no_permission" : "§6[Country]§3[player]§cYou don't have permission!.",
+
+  "message.country.message.war.cant_disband": "§6[Country]§c[war]§cYou can't disband the nation during wartime!"
+}

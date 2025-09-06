@@ -15,7 +15,9 @@ public class Spawn {
 		Country country = CountryPool.getCountryFromTown(CountryPool.getTownFromPlayer(player));
 		if (country == null) { player.displayClientMessage(Component.literal("§6[Country]§3[player]§c您没有建立国家!"), false); return false; }
 
-		country.getTown(country.name).spawn = player.getOnPos();
+        if (!country.owner.equals(player.getUUID())) { player.displayClientMessage(Component.literal("§6[Country]§3[player]§c您没有权限!"), false); return false; }
+
+        country.getTown(country.name).spawn = player.getOnPos();
 		player.displayClientMessage(Component.literal("§6[Country]§3[player]§2设置成功!"), false);
         return true;
 	}

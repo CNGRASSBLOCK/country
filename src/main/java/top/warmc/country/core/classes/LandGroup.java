@@ -19,9 +19,11 @@ public class LandGroup {
         this.WorldID =world;
     }
 
+    public String getWorldID() { return WorldID; }
+
     public void removeAll() { chunk.clear(); }
     public List<ChunkPos> getAll() { return new ArrayList<>(chunk); }
-    public boolean has(ChunkAccess chunkAccess) { return chunk.contains(chunkAccess.getPos()); }
-    public boolean add(ChunkAccess chunkAccess) { if (chunk.contains(chunkAccess.getPos())) { return false; } else { chunk.add(chunkAccess.getPos()); return true; } }
-    public boolean remove(ChunkAccess chunkAccess) { return chunk.remove(chunkAccess.getPos()); }
+    public boolean has(Level level, ChunkAccess chunkAccess) { return chunk.contains(chunkAccess.getPos()); }
+    public boolean add(Level level, ChunkAccess chunkAccess) { if (chunk.contains(chunkAccess.getPos()) || !level.dimension().location().toString().equals(WorldID)) { return false; } else { chunk.add(chunkAccess.getPos()); return true; } }
+    public boolean remove(Level level, ChunkAccess chunkAccess) { if (level.dimension().location().toString().equals(WorldID)) return chunk.remove(chunkAccess.getPos()); else return false;}
 }
