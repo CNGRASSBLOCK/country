@@ -12,9 +12,9 @@ public abstract class CountryPool {
     private static final List<Country> CountryPool = new ArrayList<>();
     private static List<Country> CilentCountryPool = new ArrayList<>();
 
-    public static List<String> getAllName(Country country) {
+    public static List<String> getAllName() {
         List<String> allName = new ArrayList<>();
-        for (Country countrys : CountryPool) allName.add(country.name);
+        for (Country country : CountryPool) allName.add(country.name);
         return allName;
     }
 

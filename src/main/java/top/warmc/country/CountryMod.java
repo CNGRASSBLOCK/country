@@ -21,6 +21,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.Minecraft;
+import top.warmc.country.config.CountryModConfigs;
 
 import java.util.function.Supplier;
 import java.util.function.Function;
@@ -46,97 +47,40 @@ public class CountryMod {
 	public CountryMod() {
 		MinecraftForge.EVENT_BUS.register(this);
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        DisplayMessage();
+        CountryModConfigs.register(bus);
 	}
 
-	public static class TextboxSetMessage {
-		private final String textboxid;
-		private final String data;
-
-		public TextboxSetMessage(FriendlyByteBuf buffer) {
-			this.textboxid = buffer.readComponent().getString();
-			this.data = buffer.readComponent().getString();
-		}
-
-		public TextboxSetMessage(String textboxid, String data) {
-			this.textboxid = textboxid;
-			this.data = data;
-		}
-
-		public static void buffer(TextboxSetMessage message, FriendlyByteBuf buffer) {
-			buffer.writeComponent(Component.literal(message.textboxid));
-			buffer.writeComponent(Component.literal(message.data));
-		}
-
-		public static void handler(TextboxSetMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
-			NetworkEvent.Context context = contextSupplier.get();
-			context.enqueueWork(() -> {
-				if (!context.getDirection().getReceptionSide().isServer() && message.data != null) {
-					Screen currentScreen = Minecraft.getInstance().screen;
-					Map<String, EditBox> textFieldsMap = new HashMap<>();
-					if (currentScreen != null) {
-						Field[] fields = currentScreen.getClass().getDeclaredFields();
-						for (Field field : fields) {
-							if (EditBox.class.isAssignableFrom(field.getType())) {
-								try {
-									field.setAccessible(true);
-									EditBox textField = (EditBox) field.get(currentScreen);
-									if (textField != null) {
-										textFieldsMap.put(field.getName(), textField);
-									}
-								} catch (IllegalAccessException ex) {
-									StringWriter sw = new StringWriter();
-									PrintWriter pw = new PrintWriter(sw);
-									ex.printStackTrace(pw);
-									String exceptionAsString = sw.toString();
-									CountryMod.LOGGER.error(exceptionAsString);
-								}
-							}
-						}
-					}
-					if (textFieldsMap.get(message.textboxid) != null) {
-						textFieldsMap.get(message.textboxid).setValue(message.data);
-					}
-				}
-			});
-			context.setPacketHandled(true);
-		}
-	}
-
-	@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-	public static class initer {
-		@SubscribeEvent
-		public static void init(FMLCommonSetupEvent event) {
-			CountryMod.addNetworkMessage(TextboxSetMessage.class, TextboxSetMessage::buffer, TextboxSetMessage::new, TextboxSetMessage::handler);
-		}
-	}
-
-	private static final String PROTOCOL_VERSION = "1";
-	public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(new ResourceLocation(MODID, MODID), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, clientVersion -> true);
-	private static int messageID = 0;
-
-	public static <T> void addNetworkMessage(Class<T> messageType, BiConsumer<T, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, T> decoder, BiConsumer<T, Supplier<NetworkEvent.Context>> messageConsumer) {
-		PACKET_HANDLER.registerMessage(messageID, messageType, encoder, decoder, messageConsumer);
-		messageID++;
-	}
 
 	private static final Collection<AbstractMap.SimpleEntry<Runnable, Integer>> workQueue = new ConcurrentLinkedQueue<>();
-
 	public static void queueServerWork(int tick, Runnable action) {
-		if (Thread.currentThread().getThreadGroup() == SidedThreadGroups.SERVER)
-			workQueue.add(new AbstractMap.SimpleEntry<>(action, tick));
+		if (Thread.currentThread().getThreadGroup() == SidedThreadGroups.SERVER) workQueue.add(new AbstractMap.SimpleEntry<>(action, tick));
 	}
-
 	@SubscribeEvent
 	public void tick(TickEvent.ServerTickEvent event) {
 		if (event.phase == TickEvent.Phase.END) {
 			List<AbstractMap.SimpleEntry<Runnable, Integer>> actions = new ArrayList<>();
 			workQueue.forEach(work -> {
 				work.setValue(work.getValue() - 1);
-				if (work.getValue() == 0)
-					actions.add(work);
+				if (work.getValue() == 0) actions.add(work);
 			});
 			actions.forEach(e -> e.getKey().run());
 			workQueue.removeAll(actions);
 		}
 	}
+
+    private void DisplayMessage() {
+        CountryMod.LOGGER.info("====================================================");
+        CountryMod.LOGGER.info("|  ▋▋▋                                             |");
+        CountryMod.LOGGER.info("| ▋   ▋                                            |");
+        CountryMod.LOGGER.info("| ▋                                                |");
+        CountryMod.LOGGER.info("| ▋        ▋▋    ▋  ▋    ▋ ▋▋     ▋    ▋ ▋   ▋   ▋ |");
+        CountryMod.LOGGER.info("| ▋       ▋  ▋   ▋  ▋    ▋▋  ▋   ▋▋▋   ▋▋ ▋  ▋   ▋ |");
+        CountryMod.LOGGER.info("| ▋   ▋   ▋  ▋   ▋  ▋    ▋   ▋    ▋    ▋     ▋   ▋ |");
+        CountryMod.LOGGER.info("|  ▋▋▋     ▋▋     ▋▋ ▋   ▋   ▋    ▋▋   ▋      ▋▋▋  |");
+        CountryMod.LOGGER.info("|                                               ▋  |");
+        CountryMod.LOGGER.info("|                                             ▋▋   |");
+        CountryMod.LOGGER.info("====================================================");
+    }
 }
