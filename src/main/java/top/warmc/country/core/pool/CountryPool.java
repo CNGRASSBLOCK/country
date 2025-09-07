@@ -1,6 +1,7 @@
 package top.warmc.country.core.pool;
 
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import top.warmc.country.core.classes.Country;
 import top.warmc.country.core.classes.Town;
@@ -24,7 +25,7 @@ public abstract class CountryPool {
     public static boolean has(String country_name) { for (Country country : CountryPool) { if (country.name.equals(country_name)) return true; } return false; }
 
     public static boolean isInCountry(Player player) { return top.warmc.country.core.pool.CountryPool.getTownFromPlayer(player) != null; }
-    public static boolean isInCountry(ChunkAccess chunkAccess) { return top.warmc.country.core.pool.CountryPool.getTownFromLand(chunkAccess) != null; }
+    public static boolean isInCountry(Level level, ChunkAccess chunkAccess) { return top.warmc.country.core.pool.CountryPool.getTownFromLand(level, chunkAccess) != null; }
 
     public static Country getCountryFromName(String country_name) { for (Country country : CountryPool) { if (country.name.equals(country_name)) return country; } return null; }
     public static Country getCountryFromTown(Town town) {
@@ -39,8 +40,8 @@ public abstract class CountryPool {
         for (Country country : CountryPool) for (Town town : country.getAllTown()) if (town.getPlayer().has(player.getUUID())) return town;
         return null;
     }
-    public static Town getTownFromLand(ChunkAccess chunkAccess) {
-        for (Country country : CountryPool) for (Town town : country.getAllTown()) if (town.getLand().has(chunkAccess)) return town;
+    public static Town getTownFromLand(Level level, ChunkAccess chunkAccess) {
+        for (Country country : CountryPool) for (Town town : country.getAllTown()) if (town.getLand().has(level, chunkAccess)) return town;
         return null;
     }
 
