@@ -21,13 +21,13 @@ public class Operation {
         //获取信息
         Town town = CountryPool.getTownFromPlayer(player);
         //检测是否在城镇中
-        if (town == null && !isAuto) {
-            player.displayClientMessage(Component.literal("§6[Country]§3[player]§c您没有建立城镇!"), false);
+        if (town == null) {
+            if (!isAuto) player.displayClientMessage(Component.literal("§6[Country]§3[player]§c您没有建立城镇!"), false);
             return;
         }
         //检测区块状态
-        if (CountryPool.getTownFromLand(player.level(), player.level().getChunk(player.getOnPos())) != null && !isAuto) {
-            player.displayClientMessage(Component.literal("§6[Country]§a[chunk]§c该区块已被声明!"), false);
+        if (CountryPool.getTownFromLand(player.level(), player.level().getChunk(player.getOnPos())) != null) {
+            if (!isAuto) player.displayClientMessage(Component.literal("§6[Country]§a[chunk]§c该区块已被声明!"), false);
             return;
         }
         //
@@ -38,7 +38,7 @@ public class Operation {
         if (country.isPeace()) {
             town.getLand().add(player.level(), player.level().getChunk(player.getOnPos()));
 
-            if (!isAuto)player.displayClientMessage(Component.literal("§6[Country]§a[chunk]§e声明成功!"), false);
+            if (!isAuto) player.displayClientMessage(Component.literal("§6[Country]§a[chunk]§e声明成功!"), false);
         }
         //这几把else了个啥
         else {

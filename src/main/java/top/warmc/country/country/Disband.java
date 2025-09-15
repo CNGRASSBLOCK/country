@@ -29,6 +29,7 @@ public class Disband {
         //检查是否在战争状态
 		if (!country.war.isEmpty()) {
             player.displayClientMessage(Component.literal("§6[Country]§c[war]§c您不能在战争时解散国家!"), false);
+            return;
         }
         //解散
 		CountryPool.remove(country);

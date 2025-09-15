@@ -19,8 +19,8 @@ public class Spawn {
             player.displayClientMessage(Component.literal("§6[Country]§3[player]§c您没有建立国家!"), false);
             return;
         }
-        //查询权限，这里为啥是只有国主？
-        if (!country.owner.equals(player.getUUID())) {
+        //查询权限
+        if (!country.getAdmin().has(player.getUUID())) {
             player.displayClientMessage(Component.literal("§6[Country]§3[player]§c您没有权限!"), false);
             return;
         }

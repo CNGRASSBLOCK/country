@@ -52,7 +52,8 @@ public class Create {
                 //加x y 区块
 				ChunkAccess chunkAccess = world.getChunk(new BlockPos((int) (player.getX() + (x - 2) * 16), 0, (int) (player.getZ() + (z - 2) * 16)));
                 //检查是否被占用
-				if (!CountryPool.isInCountry(player.level(), chunkAccess)) { town.getLand().add(player.level(), chunkAccess);
+				if (!CountryPool.isInCountry(player.level(), chunkAccess)) {
+					town.getLand().add(player.level(), chunkAccess);
                     add_chuck = true;
                 }
 			}
